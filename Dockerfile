@@ -94,4 +94,9 @@ RUN chmod +x /start.sh
 COPY scripts/comfy-node-install.sh /usr/local/bin/comfy-node-install
 RUN chmod +x /usr/local/bin/comfy-node-install
 
-COPY scripts/comfy-manager-set-mode.sh /usr/local/bin/com
+COPY scripts/comfy-manager-set-mode.sh /usr/local/bin/comfy-manager-set-mode
+RUN chmod +x /usr/local/bin/comfy-manager-set-mode
+
+ENV PIP_NO_INPUT=1
+
+CMD ["/start.sh"]
