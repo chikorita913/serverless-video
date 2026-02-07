@@ -78,13 +78,12 @@ WORKDIR /
 RUN uv pip install runpod requests websocket-client
 
 # --------------------------------------------------------------------
-# 📦 APPLICATION FILES
+# 📦 APPLICATION FILES (BASE IMAGE DOES NOT BUNDLE warmup_workflow.json)
 # --------------------------------------------------------------------
 ADD src/start.sh \
     src/network_volume.py \
     src/warmup.py \
     src/comfy_client.py \
-    src/warmup_workflow.json \
     handler.py \
     test_input.json \
     ./
@@ -95,11 +94,4 @@ RUN chmod +x /start.sh
 COPY scripts/comfy-node-install.sh /usr/local/bin/comfy-node-install
 RUN chmod +x /usr/local/bin/comfy-node-install
 
-COPY scripts/comfy-manager-set-mode.sh /usr/local/bin/comfy-manager-set-mode
-RUN chmod +x /usr/local/bin/comfy-manager-set-mode
-
-ENV PIP_NO_INPUT=1
-
-CMD ["/start.sh"]
-
-
+COPY scripts/comfy-manager-set-mode.sh /usr/local/bin/com
